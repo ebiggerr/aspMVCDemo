@@ -1,0 +1,35 @@
+﻿@model IEnumerable<aspMVCDemo.Models.Account.AccountDto>
+
+@{
+    ViewBag.Title = "Accounts";
+    //Layout = "_Layout";
+    var accounts = ViewBag.Data;
+}
+
+<h2>Accounts - ASP MVC Demo</h2>
+
+<table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col"> @Html.DisplayNameFor(list => list.Id)</th>
+                <th scope="col"> @Html.DisplayNameFor(list => list.Username)</th>
+                <th scope="col"> Actions </th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var account in Model)
+        {
+        <tr>
+            <td >
+                @Html.DisplayFor(modelItem => account.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => account.Username)
+            </td>
+            <td>
+                @Html.ActionLink("View", "AccountDetails",new { username = account.Username })
+            </td>
+        </tr>
+        }
+        </tbody>
+    </table>
