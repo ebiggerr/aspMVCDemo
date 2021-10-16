@@ -1,4 +1,4 @@
-﻿using aspMVCDemo.Models;
+﻿using aspMVCDemo.Models.Account;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
