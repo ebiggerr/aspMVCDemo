@@ -1,8 +1,11 @@
 ﻿using aspMVCDemo.Models.Auditing;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Web.Services.Description;
+using aspMVCDemo.HelperServices;
+using aspMVCDemo.Models.Roles;
 
 namespace aspMVCDemo.Models.Account
 {
@@ -21,6 +24,8 @@ namespace aspMVCDemo.Models.Account
         // Profile_Id (reference) to the Id in Profile entity
         public Profile.Profile Profile { get; set; }
 
+        public virtual ICollection<Role> Roles { get; set; }
+
         public Account()
         {
         }
@@ -31,7 +36,7 @@ namespace aspMVCDemo.Models.Account
         {
             Id = Guid.NewGuid();
             Username = username;
-            Password = password;
+            Password = Authentication.Hashing(password);
             Profile = new Profile.Profile
             {
                 Name = name
