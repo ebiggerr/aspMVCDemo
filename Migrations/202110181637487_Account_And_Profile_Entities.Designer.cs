@@ -7,13 +7,13 @@ namespace aspMVCDemo.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class Added_Account_v3 : IMigrationMetadata
+    public sealed partial class Account_And_Profile_Entities : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Added_Account_v3));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Account_And_Profile_Entities));
         
         string IMigrationMetadata.Id
         {
-            get { return "202110081653030_Added_Account_v3"; }
+            get { return "202110181637487_Account_And_Profile_Entities"; }
         }
         
         string IMigrationMetadata.Source
