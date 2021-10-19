@@ -1,0 +1,13 @@
+﻿@using aspMVCDemo.Models.Account
+@{
+    ViewBag.Title = "Account Details";
+    //Layout = "_Layout";
+}
+
+<h2>Accounts Details - ASP MVC Demo</h2>
+@{   
+    var data = ViewBag.Data;  
+}
+<h2> Id : @data.Id</h2>
+<h2> Username : @data.Username</h2>
+
