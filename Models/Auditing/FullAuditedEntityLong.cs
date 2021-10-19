@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace aspMVCDemo.Models.Auditing
 {
-    public class FullAuditedEntity
+    public class FullAuditedEntityLong
     {
         [Key]
-        public Guid Id { get; set; }
+        public long Id { get; set; }
+        
         public DateTime CreationTime { get; set; }
 
         public DateTime? LastModificationTime { get; set; }

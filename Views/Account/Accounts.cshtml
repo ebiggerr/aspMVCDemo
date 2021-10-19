@@ -13,6 +13,7 @@
             <tr>
                 <th scope="col"> @Html.DisplayNameFor(list => list.Id)</th>
                 <th scope="col"> @Html.DisplayNameFor(list => list.Username)</th>
+                <th scope="col"> @Html.DisplayNameFor(list => list.Name)</th>
                 <th scope="col"> Actions </th>
             </tr>
         </thead>
@@ -25,6 +26,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => account.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => account.Name)
             </td>
             <td>
                 @Html.ActionLink("View", "AccountDetails",new { username = account.Username })

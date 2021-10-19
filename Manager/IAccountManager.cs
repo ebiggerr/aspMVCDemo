@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using aspMVCDemo.Models.Account;
 
@@ -8,6 +9,12 @@ namespace aspMVCDemo.Manager
     {
         List<AccountDto> GetAll();
 
-        Task CreateAccount(CreateAccountDto input);
+        AccountDto GetByUsername(string username);
+
+        Task<Account> CreateAccount(CreateAccountDto input);
+
+        Task<Account> UpdateAccount(UpdateAccountDto input);
+
+        Task DeleteAccount(Guid id);
     }
 }

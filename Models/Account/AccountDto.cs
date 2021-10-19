@@ -8,8 +8,14 @@ namespace aspMVCDemo.Models.Account
         
         public string Username;
 
+        public string Password;
+
         public DateTime CreationTime;
 
         public DateTime LastModificationTime;
+
+        public long Profile_Id;
+
+        public string Name;
     }
 }

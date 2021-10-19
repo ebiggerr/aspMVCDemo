@@ -1,18 +1,22 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
+using System.Web.Profile;
 using aspMVCDemo.Manager;
 using aspMVCDemo.Models.Account;
+using ProfileManager = aspMVCDemo.Manager.Profile.ProfileManager;
 
 namespace aspMVCDemo.Controllers.Accounts
 {
     public class AccountController : Controller, IAccountController
     {
         private readonly AccountManager _accountManager;
+        private readonly Manager.Profile.ProfileManager _profileManager;
 
-        public AccountController(AccountManager accountManager)
+        public AccountController(AccountManager accountManager,
+            ProfileManager profileManager)
         {
             _accountManager = accountManager;
+            _profileManager = profileManager;
         }
 
         // GET: Accounts
@@ -20,7 +24,13 @@ namespace aspMVCDemo.Controllers.Accounts
         public ActionResult Accounts()
         {
             //var list = GetData();
-            var list = _accountManager.GetAll();
+            var list = _accountManager.GetAll().Join(_profileManager.GetAll(), x => x.Profile_Id, y => y.Id, (x,y) => new AccountDto()
+            {
+                Id = x.Id,
+                Profile_Id = x.Profile_Id,
+                Username = x.Username,
+                Name = y.Name
+            });
             //ViewBag.Data = list;
 
             return View("Accounts", list);
@@ -29,25 +39,11 @@ namespace aspMVCDemo.Controllers.Accounts
         [Route("/accounts/{username}")]
         public ActionResult AccountDetails(string username)
         {
-            var list = GetData();
-
-            var item = list.FirstOrDefault(x => x.Username == username);
+            var item = _accountManager.GetByUsername(username);
             
             ViewBag.Data = item;
             
             return View("AccountDetails");
-        }
-
-        public List<CreateAccountDto> GetData()
-        {
-            List<CreateAccountDto> list = new List<CreateAccountDto>();
-            list.Add( new CreateAccountDto("Testing 1", "Testing 1"));
-            list.Add( new CreateAccountDto("Testing 2", "Testing 2"));
-            list.Add( new CreateAccountDto("Testing 3", "Testing 3"));
-            list.Add( new CreateAccountDto("Testing 4", "Testing 4"));
-
-
-            return list;
         }
     }
 }
