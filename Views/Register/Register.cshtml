@@ -1,5 +1,13 @@
 ﻿@model aspMVCDemo.Models.Account.CreateAccountDto
 
+@if (ViewBag.Error != null)  
+                    {  
+                        <script type="text/javascript">  
+                            window.onload = function () {  
+                                alert("@ViewBag.Error");  
+                            };  
+                        </script>  
+                    }
 <div class="row justify-content-md-center">
     <div class="col-md-4">
         <div class="card">
