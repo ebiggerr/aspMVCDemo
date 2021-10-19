@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using AutoMapper;
+using Profile = aspMVCDemo.Models.Profile.Profile;
 
 namespace aspMVCDemo.EF
 {
@@ -15,11 +17,35 @@ namespace aspMVCDemo.EF
 
         // Account entity
         public virtual DbSet<Account> Accounts { get; set; }
-
-        /*protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        public virtual DbSet<Profile> Profiles { get; set; }
+        
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-        }*/
+            
+            modelBuilder.Entity<Account>()
+                .HasIndex(x => x.Username)
+                .IsUnique();
+            modelBuilder.Entity<Account>()
+                .Property(x => x.Username)
+                .IsRequired();
+            modelBuilder.Entity<Account>()
+                .Property(x => x.Password)
+                .IsRequired();
+            
+            // Configure the primary key for the Account
+            modelBuilder.Entity<Account>()
+                .HasKey(t => t.Id);
+
+            //Each Profile will belongs to an account (One-to-One)
+            //Profile_Id (Account) <--> Id (Profile) long data type
+            modelBuilder.Entity<Profile>()
+                .HasRequired(t => t.Account)
+                .WithRequiredPrincipal(t => t.Profile);
+
+        }
+
+        
 
     }
 }
