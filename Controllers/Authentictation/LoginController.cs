@@ -25,6 +25,8 @@ namespace aspMVCDemo.Controllers.Authentictation
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public ActionResult Login(CreateAccountDto input)
         {
             bool valid = false;
@@ -39,7 +41,7 @@ namespace aspMVCDemo.Controllers.Authentictation
 
                     if (valid)
                     {
-                        
+                        return RedirectToAction("Index","Home");            
                     }
                 }
             }

@@ -11,5 +11,11 @@ namespace aspMVCDemo.Models.Profile
         public string Name { get; set; }
         
         public Account.Account Account { get; set; }
+
+        public Profile()
+        {
+            CreationTime = DateTime.Now;
+            
+        }
     }
 }

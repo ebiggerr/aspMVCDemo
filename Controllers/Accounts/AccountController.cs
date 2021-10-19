@@ -21,6 +21,7 @@ namespace aspMVCDemo.Controllers.Accounts
 
         // GET: Accounts
         [Route("/accounts")]
+        [Authorize]
         public ActionResult Accounts()
         {
             //var list = GetData();
@@ -37,6 +38,7 @@ namespace aspMVCDemo.Controllers.Accounts
         }
 
         [Route("/accounts/{username}")]
+        [Authorize]
         public ActionResult AccountDetails(string username)
         {
             var item = _accountManager.GetByUsername(username);
